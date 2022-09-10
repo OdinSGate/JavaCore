@@ -18,6 +18,29 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
+    public static void main(String[] args) {
+        System.out.println("Raw data:");
+        System.out.println();
+
+        for (Person person : RAW_DATA) {
+            System.out.println(person.id + " - " + person.name);
+        }
+
+        System.out.println();
+        System.out.println("**************************************************");
+        System.out.println();
+        System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
+        System.out.println();
+
+        Map<String, Long> personsMap = Arrays.stream(Optional.of(RAW_DATA)
+                        .orElseThrow(NullPointerException::new))
+                .distinct()
+                .sorted(Comparator.comparing(Person::getId))
+                .collect(Collectors.groupingBy(Person::getName, TreeMap::new, Collectors.counting()));
+        personsMap.forEach((key, value) ->
+                System.out.println("Key: " + key + "\nValue: " + value));
+    }
+
     static class Person {
         final int id;
 
@@ -64,26 +87,4 @@ public class Main {
             new Person(8, "Amelia"),
     };
 
-    public static void main(String[] args) {
-        System.out.println("Raw data:");
-        System.out.println();
-
-        for (Person person : RAW_DATA) {
-            System.out.println(person.id + " - " + person.name);
-        }
-
-        System.out.println();
-        System.out.println("**************************************************");
-        System.out.println();
-        System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
-        System.out.println();
-
-        Map<String, Long> personsMap = Arrays.stream(Optional.of(RAW_DATA)
-                        .orElseThrow(NullPointerException::new))
-                .distinct()
-                .sorted(Comparator.comparing(Person::getId))
-                .collect(Collectors.groupingBy(Person::getName, TreeMap::new, Collectors.counting()));
-        personsMap.forEach((key, value) ->
-                System.out.println("Key: " + key + "\nValue: " + value));
-    }
 }
