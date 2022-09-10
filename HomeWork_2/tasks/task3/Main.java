@@ -26,6 +26,9 @@ public class Main {
     }
 
     private static boolean fuzzySearch(String line, String errorLine) {
+        if (line.isEmpty() || errorLine.isEmpty()) {
+            return false;
+        }
         int charIndex = 0;
         int charIndex2 = 0;
         while (charIndex2 < errorLine.length()) {
