@@ -1,6 +1,7 @@
 package task3;
 
 /*
+
     Task3
     Реализовать функцию нечеткого поиска
         fuzzySearch("car", "ca6$$#_rtwheel"); // true
@@ -9,6 +10,7 @@ package task3;
         fuzzySearch("cartwheel", "cartwheel"); // true
         fuzzySearch("cwheeel", "cartwheel"); // false
         fuzzySearch("lw", "cartwheel"); // false
+
 */
 
 
