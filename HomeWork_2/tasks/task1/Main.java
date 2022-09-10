@@ -59,7 +59,7 @@ public class Main {
             new Person(4, "Jack"),
             new Person(5, "Amelia"),
             new Person(5, "Amelia"),
-            new Person(6, "Amelia"),
+            new Person(6, "Zmelia"),
             new Person(7, "Amelia"),
             new Person(8, "Amelia"),
     };
@@ -82,7 +82,7 @@ public class Main {
                         .orElseThrow(NullPointerException::new))
                 .distinct()
                 .sorted(Comparator.comparing(Person::getId))
-                .collect(Collectors.groupingBy(Person::getName, Collectors.counting()));
+                .collect(Collectors.groupingBy(Person::getName, TreeMap::new, Collectors.counting()));
         personsMap.forEach((key, value) ->
                 System.out.println("Key: " + key + "\nValue: " + value));
     }
