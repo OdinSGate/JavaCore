@@ -32,8 +32,7 @@ public class Main {
         System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
         System.out.println();
 
-        Map<String, Long> personsMap = Arrays.stream(Optional.of(RAW_DATA)
-                        .orElseThrow(NullPointerException::new))
+        Map<String, Long> personsMap = Arrays.stream(RAW_DATA)
                 .distinct()
                 .sorted(Comparator.comparing(Person::getId))
                 .collect(Collectors.groupingBy(Person::getName, TreeMap::new, Collectors.counting()));
